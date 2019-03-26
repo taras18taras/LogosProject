@@ -9,5 +9,6 @@ public class AdmissionsApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AdmissionsApplication.class, args);
 	}
+	//
 
 }
