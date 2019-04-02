@@ -1,13 +1,30 @@
 package logos.project.admissions.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "student")
 public class Student {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	@Column
 	private String first_name;
+	@Column
 	private String second_name;
+	@Column
 	private String last_name;
+	@Column
 	private Integer english_score;
+	@Column
 	private Integer math_score;
+	@Column
 	private Integer history_score;
 
 	public Student() {

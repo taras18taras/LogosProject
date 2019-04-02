@@ -1,12 +1,36 @@
 package logos.project.admissions.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import logos.project.admissions.domain.UserRole;
+import logos.project.admissions.domain.User;
+
+@Entity
+@Table(name = "user")
 public class User {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	@Column
 	private String email;
+	@Column
 	private String firstName;
+	@Column
 	private String lastName;
-	private UserRole role;
+	@Column
 	private String password;
+	@Column
+	private String passwordConfirm;
+	
+	@Enumerated(EnumType.STRING)
+	private UserRole role;
 
 	public User() {
 	}
@@ -26,6 +50,15 @@ public class User {
 		this.lastName = lastName;
 		this.role = role;
 		this.password = password;
+	}
+	
+	public User(User user) {
+		this.id = user.id;
+		this.email = user.email;
+		this.firstName = user.firstName;
+		this.lastName = user.lastName;
+		this.password = user.password;
+		this.role = user.role;
 	}
 
 	public Integer getId() {
@@ -132,5 +165,13 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName + ", role="
 				+ role + ", password=" + password + "]";
+	}
+
+	public String getPasswordConfirm() {
+		return passwordConfirm;
+	}
+
+	public void setPasswordConfirm(String passwordConfirm) {
+		this.passwordConfirm = passwordConfirm;
 	}
 }

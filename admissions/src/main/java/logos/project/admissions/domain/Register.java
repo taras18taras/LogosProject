@@ -2,11 +2,27 @@ package logos.project.admissions.domain;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "register")
+
 public class Register {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	@Column
 	private Integer student_id;
+	@Column
 	private Integer faculty_id;
+	@Column
 	private Date date;
+	@Column
 	private Boolean accepted;
 
 	public Register() {
