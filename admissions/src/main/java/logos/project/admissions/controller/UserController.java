@@ -7,8 +7,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import logos.project.admissions.service.UserService;
+
 import logos.project.admissions.dao.UserRepository;
 import logos.project.admissions.domain.User;
 
@@ -17,8 +19,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
-
+  
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
         model.addAttribute("userForm", new User());
@@ -50,9 +51,10 @@ public class UserController {
     }
 
     @RequestMapping(value ="/home", method = RequestMethod.GET)
-    public String welcome(Model model) {
-        return "home";
-    }
-    
-    
+	public ModelAndView welcome() {
+		ModelAndView map = new ModelAndView("home");
+		
+		return map;
+	}
+   
 }

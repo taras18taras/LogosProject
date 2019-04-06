@@ -13,7 +13,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import logos.project.admissions.security.CustomUserDetailsService;
-
 @Configuration
 @EnableWebSecurity
 @ComponentScan(basePackageClasses=CustomUserDetailsService.class)
@@ -37,7 +36,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 		.antMatchers("/").permitAll()
-		.antMatchers("/home").access("hasRole('ROLE_USER')").anyRequest().permitAll().and()
+		.antMatchers("/home").access("hasRole('ROLE_USER')")
+		.antMatchers("/create-periodical").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+		.anyRequest().permitAll().and()
 		
 		.formLogin().loginPage("/login")
 		.defaultSuccessUrl("/home").usernameParameter("email").passwordParameter("password").and()

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import logos.project.admissions.dao.UserRepository;
 import logos.project.admissions.domain.User;
 
+
 @Service("customUserDetailsService")
 public class CustomUserDetailsService implements UserDetailsService {
 

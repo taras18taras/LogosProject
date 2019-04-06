@@ -1,5 +1,5 @@
 package logos.project.admissions.domain;
 
 public enum UserRole {
-	ADMINISTRATOR, USER;
+	ADMINISTRATOR, ROLE_USER;
 }
