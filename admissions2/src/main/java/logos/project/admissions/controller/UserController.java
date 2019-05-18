@@ -9,14 +9,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import logos.project.admissions.service.UserService;
 import logos.project.admissions.service.ApplicantsService;
-
+import logos.project.admissions.service.RegisterService;
 import logos.project.admissions.dao.UserRepository;
 
 import logos.project.admissions.domain.Applicant;
+import logos.project.admissions.domain.Register;
 import logos.project.admissions.domain.User;
 
 @Controller
@@ -26,6 +28,9 @@ public class UserController {
     
     @Autowired
     private ApplicantsService applicantsService;
+    
+    @Autowired
+    private RegisterService registerService;
 
   
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
@@ -73,6 +78,39 @@ public class UserController {
 		return new ModelAndView("createApplicant","applicant",new Applicant());
 	}
 	
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	
+	public ModelAndView updateApplicant(@RequestParam int id) {
+		//return "createPeriodical";
+		//return new ModelAndView("updateApplicant","applicant",new Applicant());
+		Applicant p  = applicantsService.findById(id);
+		ModelAndView n = new ModelAndView("updateApplicant");
+		n.addObject("applicant", p);
+		return n;
+	}
+	
+	@RequestMapping(value = "/create-register", method = RequestMethod.GET)
+	
+	public ModelAndView createRegister() {
+		return new ModelAndView("createRegister","register",new Register());
+	}
+	
+	
+	 @RequestMapping(value ="/registerList", method = RequestMethod.GET)
+	    public ModelAndView ShowRegisterList() {
+			ModelAndView map = new ModelAndView("registerList");
+			map.addObject("register", registerService.getAllRegisteredApplicants());
+
+			return map;
+	 }
+	 
+	 @RequestMapping(value ="/studentsList", method = RequestMethod.GET)
+	    public ModelAndView ShowStudentsList() {
+			ModelAndView map = new ModelAndView("studentsList");
+			map.addObject("register", registerService.getAllRegisteredApplicants());
+
+			return map;
+	 }
 	
 	
    

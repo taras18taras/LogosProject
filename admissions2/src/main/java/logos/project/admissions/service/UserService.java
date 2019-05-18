@@ -1,5 +1,7 @@
 package logos.project.admissions.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -11,7 +13,10 @@ import logos.project.admissions.domain.UserRole;
 
 @Service
 public class UserService{
-    @Autowired
+    
+	private Logger logger = LoggerFactory.getLogger(ApplicantsService.class);
+
+	@Autowired
     private UserRepository userRepository;
 
     @Autowired
@@ -19,6 +24,7 @@ public class UserService{
 
 
     public void save(User user) {
+    	logger.info("Register new user {} : " + user);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setPassword(bCryptPasswordEncoder.encode(user.getPasswordConfirm()));
         user.setRole(UserRole.ROLE_USER);
