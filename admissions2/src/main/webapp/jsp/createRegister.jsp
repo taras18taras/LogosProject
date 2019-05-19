@@ -15,15 +15,37 @@
 <body>
 
 		<!-- Sidebar -->
-		<div class="w3-sidebar w3-light-grey w3-bar-block" style="width: 10%">
-			<h3 class="w3-bar-item"><spring:message code="sidebar.menu" /></h3>
-			<a href="/home" class="w3-bar-item w3-button"><spring:message code="sidebar.home" /></a>
+		<div class="w3-sidebar w3-light-grey w3-bar-block" style="width: 15%">
+			<h3 class="w3-bar-item">
+				<spring:message code="sidebar.menu" />
+			</h3>
+			<a href="/home" 			class="w3-bar-item w3-button"><spring:message code="sidebar.home" /></a> 
+			<a href="/create-applicant"	class="w3-bar-item w3-button"><spring:message code="sidebar.create_applicant" /></a>
+			<a href="/create-register"	class="w3-bar-item w3-button"><spring:message code="sidebar.register" /></a>
+			<a href="/registerList" 	class="w3-bar-item w3-button"><spring:message code="sidebar.applicant_list" /></a> 
+			<a href="/studentsList"     class="w3-bar-item w3-button"><spring:message code="sidebar.student_list" /></a>
 
 		</div>
 
-<div style="margin-left: 10%">
-			<div class="w3-container w3-teal">
-				<h1>Create new register</h1>
+<div style="margin-left: 15%">
+			
+			<div class="w3-container w3-teal"
+				style="background-color: #616161 !important">
+ 					<h2> 
+ 						<spring:message code="register.create" /> 
+ 						<div style="float: right">
+							<c:if test="${pageContext.request.userPrincipal.name != null}">
+								<form id="logoutForm" method="POST"
+									action="${contextPath}/logout">
+									<input type="hidden" name="${_csrf.parameterName}"
+										value="${_csrf.token}" />
+								</form>
+								<h4 style="float: right">  <a 
+								onclick="document.forms['logoutForm'].submit()"><spring:message
+									code="sidebar.logout" /></a></h4>
+							</c:if>
+						</div>
+ 					</h2> 
 			</div>
 			<div class="w3-container">
 				<form:form method="POST" action="${contextPath}/create-register" modelAttribute="register" enctype="multipart/form-data">

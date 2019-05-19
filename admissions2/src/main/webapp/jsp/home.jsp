@@ -20,6 +20,7 @@
 <style>
 img {
 	border-radius: 10%;
+	width: 200px;
 }
 </style>
 
@@ -27,52 +28,55 @@ img {
 <link href="${contextPath}/resources/css/bootstrap.min.css"
 	rel="stylesheet">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 </head>
 <body>
 	<div class="container">
 
 
 		<!-- Sidebar -->
-		<div class="w3-sidebar w3-light-grey w3-bar-block" style="width: 10%">
+		<div class="w3-sidebar w3-light-grey w3-bar-block" style="width: 15%">
 			<h3 class="w3-bar-item">
 				<spring:message code="sidebar.menu" />
 			</h3>
-			<a href="/home" class="w3-bar-item w3-button"><spring:message
-					code="sidebar.home" /></a> <a href="/create-applicant"
-				class="w3-bar-item w3-button"><spring:message
-					code="sidebar.create_applicant" /></a> <a href="/update-applicant"
-				class="w3-bar-item w3-button"><spring:message
-					code="sidebar.update_applicant" /></a> <a href="/create-register"
-				class="w3-bar-item w3-button"><spring:message
-					code="sidebar.register" /></a> <a href="/registerList"
-				class="w3-bar-item w3-button">applicant LIST</a> <a
-				href="/studentsList" class="w3-bar-item w3-button">Student LIST</a>
+			<a href="/home" 			class="w3-bar-item w3-button"><spring:message code="sidebar.home" /></a> 
+			<a href="/create-applicant"	class="w3-bar-item w3-button"><spring:message code="sidebar.create_applicant" /></a>
+			<a href="/create-register"	class="w3-bar-item w3-button"><spring:message code="sidebar.register" /></a>
+			<a href="/registerList" 	class="w3-bar-item w3-button"><spring:message code="sidebar.applicant_list" /></a> 
+			<a href="/studentsList"     class="w3-bar-item w3-button"><spring:message code="sidebar.student_list" /></a>
 
 		</div>
 
-
 		<!-- Page Content -->
-		<div style="margin-left: 10%">
+		<div style="margin-left: 15%">
 
-			<div class="w3-container w3-teal">
-				<h1>
-					<spring:message code="sidebar.applicants" />
-				</h1>
+			<div class="w3-container w3-teal"
+				style="background-color: #616161 !important">
+ 					<h2> 
+ 						<spring:message code="sidebar.applicants" /> 
+ 						<div style="float: right">
+							<c:if test="${pageContext.request.userPrincipal.name != null}">
+								<form id="logoutForm" method="POST"
+									action="${contextPath}/logout">
+									<input type="hidden" name="${_csrf.parameterName}"
+										value="${_csrf.token}" />
+								</form>
+								<h4 style="float: right"><spring:message code="login.welcome" /> ${pageContext.request.userPrincipal.name} | <a 
+								onclick="document.forms['logoutForm'].submit()"><spring:message
+									code="sidebar.logout" /></a></h4>
+							</c:if>
+						</div>
+ 					</h2> 
 			</div>
-			<a onclick="document.forms['logoutForm'].submit()"><spring:message
-					code="sidebar.logout" /></a>
+
+
+
 
 			<div class="w3-container">
 
-				<c:if test="${pageContext.request.userPrincipal.name != null}">
-					<form id="logoutForm" method="POST" action="${contextPath}/logout">
-						<input type="hidden" name="${_csrf.parameterName}"
-							value="${_csrf.token}" />
-					</form>
-					<h2>Welcome ${pageContext.request.userPrincipal.name} |</h2>
-				</c:if>
+				
 
-				<div class="w3-container" >
+				<div class="w3-container"  >
 					<c:if test="${not empty applicants}">
 						<c:forEach items="${applicants}" var="currentApplicants">
 							<div class="w3-card-4 w3-dark-grey"
@@ -97,9 +101,8 @@ img {
 										</c:otherwise>
 									</c:choose>
 
-									<h3>${currentApplicants.first_name}
-										${currentApplicants.second_name}
-										${currentApplicants.last_name}</h3>
+									<h3>${currentApplicants.first_name}	${currentApplicants.second_name}</h3>
+									<h3>${currentApplicants.last_name}</h3>
 
 									<security:authorize access="hasRole('ROLE_ADMIN')">
 										<div class="w3-section">

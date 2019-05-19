@@ -11,7 +11,20 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
-	<div style="margin-left: 10%">
+		<!-- Sidebar -->
+		<div class="w3-sidebar w3-light-grey w3-bar-block" style="width: 15%">
+			<h3 class="w3-bar-item">
+				<spring:message code="sidebar.menu" />
+			</h3>
+			<a href="/home" 			class="w3-bar-item w3-button"><spring:message code="sidebar.home" /></a> 
+			<a href="/create-applicant"	class="w3-bar-item w3-button"><spring:message code="sidebar.create_applicant" /></a>
+			<a href="/create-register"	class="w3-bar-item w3-button"><spring:message code="sidebar.register" /></a>
+			<a href="/registerList" 	class="w3-bar-item w3-button">applicant LIST</a> 
+			<a href="/studentsList"     class="w3-bar-item w3-button">Student LIST</a>
+
+		</div>
+
+	<div style="margin-left: 15%">
 		<div class="w3-container w3-teal">
 			<h1>Update new Applicant</h1>
 		</div>
